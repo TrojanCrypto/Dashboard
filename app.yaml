@@ -44,5 +44,9 @@ env_variables:
   GAE_USE_SOCKETS_HTTPLIB : ''
 
 handlers:
+- url: /_ah/admin/.*
+  script: google.appengine.ext.admin.application
+  login: admin
+
 - url: .*
   script: main.app

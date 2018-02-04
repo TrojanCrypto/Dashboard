@@ -1,2 +1,16 @@
 from google.appengine.ext import vendor
 vendor.add('Library')
+
+import requests_toolbelt.adapters.appengine
+requests_toolbelt.adapters.appengine.monkeypatch()
+
+import os
+import firebase_admin
+from firebase_admin import credentials
+cred = credentials.Certificate(os.path.join(os.path.dirname(__file__), "Keys", "trojancrypto-firebase-adminsdk.json"))
+firebase_admin.initialize_app(cred, {
+    'databaseURL': 'https://trojancrypto.firebaseio.com'
+})
+
+from google.appengine.api import urlfetch
+urlfetch.set_default_fetch_deadline(10)
