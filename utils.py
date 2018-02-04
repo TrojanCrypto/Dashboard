@@ -16,11 +16,11 @@ def authenticate_user(self, email_list=None):
             self.response.out.write(
                 "{user_email} is not authorized.  Please <a href={logout_url}>Logout</a> and re-login.".format(
                     user_email=user.email(),
-                    logout_url=users.create_logout_url(self.request.url)))
+                    logout_url=users.create_login_url(self.request.url).replace("true", "false")))
             return False
 
     else:
         self.response.out.write("Please <a href='{login_url}'>Login...</a>".format(
-            login_url=users.create_login_url(self.request.url)
+            login_url=users.create_login_url(self.request.url).replace("true", "false")
         ))
         return False
