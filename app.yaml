@@ -13,13 +13,13 @@ libraries:
   version: latest
 
 - name: MySQLdb
-  version: "latest"
+  version: latest
 
 - name: django
-  version: "1.2"
+  version: latest
 
 - name: pycrypto
-  version: "2.6"
+  version: latest
 
 - name: lxml
   version: latest
