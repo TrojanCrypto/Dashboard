@@ -1,9 +1,14 @@
 import webapp2
+import utils
 
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        self.response.out.write("Hello World!!")
+        user = utils.authenticate_user(self)
+        if not user:
+            return
+
+        self.response.out.write("Hello {}!".format(user.nickname()))
 
 
 app = webapp2.WSGIApplication([
