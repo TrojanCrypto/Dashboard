@@ -1,6 +1,7 @@
 from google.appengine.api import users
+import os
 
-ADMIN_USERS = ['jigarkub@usc.edu']
+ADMIN_USERS = ['jigarkub@usc.edu', 'pashints@usc.edu']
 
 
 def authenticate_user(self, email_list=None):
@@ -24,3 +25,7 @@ def authenticate_user(self, email_list=None):
             login_url=users.create_login_url(self.request.url).replace("true", "false")
         ))
         return False
+
+
+def template(file_name, directory="templates"):
+    return os.path.join(os.path.dirname(__file__), directory, file_name)

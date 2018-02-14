@@ -1,4 +1,6 @@
 import webapp2
+from google.appengine.ext.webapp import template
+
 import utils
 
 
@@ -8,7 +10,11 @@ class MainHandler(webapp2.RequestHandler):
         if not user:
             return
 
-        self.response.out.write("Hello {}!".format(user.nickname()))
+        template_values = {
+            "user": user,
+        }
+        page = utils.template("main.html", "templates")
+        self.response.out.write(template.render(page, template_values))
 
 
 app = webapp2.WSGIApplication([
